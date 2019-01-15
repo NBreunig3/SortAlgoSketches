@@ -5,21 +5,17 @@
  **/
 
 float[] values; //Array to sort
-int i = 0; 
-int j = 0; //For for loop logic
-int recWidth; 
-int rectangles; 
-int swaps; 
-int sorted; 
-int unsorted; //Variables for stats on sort
+int i = 0; int j = 0; //For for loop logic inside draw loop
+int recWidth; int rectangles; 
+int swaps; int sorted; int unsorted; //Variables for stats on sort
 SimpleTimer timer = new SimpleTimer(); //Timer class for timing the algorithm
-int smallestIndex = 0;
+int smallestIndex = 0; //Use for selection sort algorithm
 
 void setup() {
   size(1400, 800);
   frameRate(60);
-  rectangles= 40;
-  recWidth = width / rectangles;
+  rectangles= 50;
+  recWidth = width / rectangles; //width of each rectangle
   values = new float[rectangles];
 
   //Fill array with random values
@@ -73,6 +69,7 @@ void draw() {
   }
 }
 
+//Draws the rectangles to display the values within the array
 void disp() {
   textSize(recWidth / 3);
   for (int n = 0; n < values.length; n++) {
@@ -91,6 +88,7 @@ void disp() {
   }
 }
 
+//Draw the two values being compared at each iteration of the for loop
 void drawComparisonRectangles(int j, int smallest) {
   textSize(recWidth / 3);
   fill(0, 0, 255);
@@ -103,6 +101,8 @@ void drawComparisonRectangles(int j, int smallest) {
   text((int)values[smallest], (smallest*recWidth)+5, height - values[smallest] + 20);
 }
 
+//Swapping two items in an array
+//Used for the selection sort algorithm
 void swap(int i1, int i2) {
   float temp = values[i1];
   values[i1] = values[i2];
