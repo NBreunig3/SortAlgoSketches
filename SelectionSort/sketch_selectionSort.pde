@@ -3,7 +3,9 @@
  By Nathan Breunig
  Last Updated: 1/15/19
  **/
+import processing.sound.*;
 
+SoundFile sound;
 float[] values; //Array to sort
 int i = 0; int j = 0; //For for loop logic inside draw loop
 int recWidth; int rectangles; 
@@ -14,7 +16,8 @@ int smallestIndex = 0; //Use for selection sort algorithm
 void setup() {
   size(1400, 800);
   frameRate(60);
-  rectangles= 50;
+  sound = new SoundFile(this, "ding.wav");
+  rectangles= 40;
   recWidth = width / rectangles; //width of each rectangle
   values = new float[rectangles];
 
@@ -57,6 +60,7 @@ void draw() {
       j++;
     } else {
       swap(i, smallestIndex);
+      sound.play();
       swaps++;
       i++;
       j = i + 1;
@@ -98,7 +102,7 @@ void drawComparisonRectangles(int j, int smallest) {
   fill(255, 255, 0);
   rect(smallest*recWidth, height, recWidth, -values[smallest]);
   fill(0);
-  text((int)values[smallest], (smallest*recWidth)+5, height - values[smallest] + 20);
+  text((int)values[smallest], (smallest*recWidth), height - values[smallest] + 20);
 }
 
 //Swapping two items in an array
