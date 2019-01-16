@@ -10,8 +10,11 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Bubble_sort): Bubble sort, someti
 | Best Case | Average Case | Worst Case |
 |:---------:|:------------:|:----------:|
 | O(n)      | O(n^2)       | O(n^2)     |
-#### Download: 
-Download the Bubble Sort Processing sketch as an executable here  //coming soon
+#### My Bubble Sort Processing Animation: 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=HERE
+" target="_blank"><img src="http://img.youtube.com/vi/HERE/0.jpg" 
+alt="Bubble Sort Animation by Nathan Breunig" border="10" /></a>
+
 #
 ## Selection Sort
 #### Description:
@@ -20,5 +23,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Selection_Sort): The algorithm pr
 | Best Case | Average Case | Worst Case |
 |:---------:|:------------:|:----------:|
 | O(n^2)      | O(n^2)       | O(n^2)     |
-#### Download: 
-Download the Selection Sort Processing sketch as an executable here  //coming soon
+#### My Selection Sort Processing Animation: 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=HERE
+" target="_blank"><img src="http://img.youtube.com/vi/HERE/0.jpg" 
+alt="Selection Sort Animation by Nathan Breunig" border="10" /></a>
