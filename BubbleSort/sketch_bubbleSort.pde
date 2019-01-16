@@ -3,7 +3,9 @@ Bubble Sort Visualization
 By Nathan Breunig
 Last Updated: 1/15/19
 **/
+import processing.sound.*;
 
+SoundFile sound;
 float[] values; //Array to sort
 int i = 0; int j = 0; //Varibales for the loops within the draw method
 int recWidth; int rectangles;
@@ -11,9 +13,10 @@ int swaps = 0; int sorted, unsorted; //Variables for stats on the sort
 SimpleTimer timer = new SimpleTimer(); //Timer class for timing sort
 
 void setup() {
-  size(1900, 480);
+  size(1400, 800);
   frameRate(60);
-  rectangles = 100; //Number of items to sort
+  sound = new SoundFile(this, "ding.wav");
+  rectangles = 40; //Number of items to sort
   recWidth = width / rectangles; //Width of each rectangle to draw
   values = new float[rectangles];
   
@@ -62,6 +65,7 @@ void draw() {
     if (j >= values.length-i-1) {
       j = 0;
       i++;
+      sound.play();
     }
   } else {
     noLoop();
@@ -80,22 +84,27 @@ void disp() {
       fill(255);
       rect(n*recWidth, height, recWidth, -values[n]);
       fill(0);
-      text((int)values[n], n*recWidth, height - values[n] + 15);
+      text((int)values[n], n*recWidth, height - values[n] + 35);
     } 
     //Draw green rectangle is sorted since in correct position
     else {
       fill(0, 128, 0);
       rect(n*recWidth, height, recWidth, -values[n]);
       fill(255);
-      text((int)values[n], n*recWidth, height -values[n] + 15);
+      text((int)values[n], n*recWidth, height -values[n] + 35);
     }
   }
 }
 
 //Draw the two values being compared at each iteration of the for loop
 void drawJRect(int j) {
+  textSize(recWidth / 3);
   fill(255, 255, 0);
   rect(j*recWidth, height, recWidth, -values[j]);
+  fill(0);
+  text((int)values[j], j*recWidth, height -values[j] + 35);
   fill(0, 0, 255);
   rect((j+1)*recWidth, height, recWidth, -values[j+1]);
+  fill(255);
+  text((int)values[j+1], (j+1)*recWidth, height -values[j+1] + 35);
 }
