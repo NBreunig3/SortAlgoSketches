@@ -1,6 +1,5 @@
 # SortAlgoSketches
-Various animations of different sorting algorithms using Processing. 
-By Nathan Breunig
+Various animations of different sorting algorithms using Processing by Nathan Breunig.
 #
 ## Bubble Sort
 ### Description:
