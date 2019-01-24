@@ -1,23 +1,36 @@
 /**
  Selection Sort Visulization
  By Nathan Breunig
- Last Updated: 1/15/19
+ Last Updated: 1/23/19
  **/
 import processing.sound.*;
+import javax.swing.*;
 
 SoundFile sound;
 float[] values; //Array to sort
-int i = 0; int j = 0; //For for loop logic inside draw loop
-int recWidth; int rectangles; 
-int swaps; int sorted; int unsorted; //Variables for stats on sort
+boolean looping, teacherMode;
+int i; 
+int j; //For for loop logic inside draw loop
+int recWidth; 
+int rectangles; 
+int swaps; 
+int sorted; 
+int unsorted; //Variables for stats on sort
 SimpleTimer timer = new SimpleTimer(); //Timer class for timing the algorithm
-int smallestIndex = 0; //Use for selection sort algorithm
+int smallestIndex; //Use for selection sort algorithm
 
 void setup() {
   size(1400, 800);
+  background(0);
   frameRate(60);
+  //reset variables
+  i = 0;
+  j = 0;
+  smallestIndex = 0;
   sound = new SoundFile(this, "ding.wav");
-  rectangles= 40;
+  //User Input
+  rectangles= getNumOfRectangles();
+  teacherMode = isTeacherMode();
   recWidth = width / rectangles; //width of each rectangle
   values = new float[rectangles];
 
@@ -25,6 +38,7 @@ void setup() {
   for (int i = 0; i < values.length; i++) {
     values[i] = random(height);
   }
+  looping = true;
   timer.start();
 }
 
@@ -45,7 +59,7 @@ void draw() {
   //Draw text/stats
   fill(255);
   textSize(20);
-  text("Selection Sort Visualization by Nathan Breunig. 1/15/19. ", 10, 25);
+  text("Selection Sort Visualization by Nathan Breunig. 1/23/19. ", 10, 25);
   text("Array Size: " + width/recWidth + ", Sorted: " + sorted + ", Unsorted: " + unsorted, 10, 50);
   text("Swaps: " + swaps, 10, 75);
   text("Time Elapsed: " + timer.getElapsedSec() + " sec", 10, 100);
@@ -71,6 +85,10 @@ void draw() {
     stroke(255);
     disp();
   }
+
+  if (teacherMode) {
+    noLoop();
+  }
 }
 
 //Draws the rectangles to display the values within the array
@@ -80,14 +98,18 @@ void disp() {
     if (n >= i) {
       fill(255);
       rect(n*recWidth, height, recWidth, -values[n]);
-      fill(0);
-      text((int)values[n], (n*recWidth), height - values[n] + 20);
+      if (rectangles <= 50) {
+        fill(0);
+        text((int)values[n], (n*recWidth), height - values[n] + 20);
+      }
     } else {
       //draw green
       fill(0, 128, 0); //Make rectangles green
       rect(n*recWidth, height, recWidth, -values[n]);
-      fill(255);
-      text((int)values[n], (n*recWidth), height - values[n] + 20);
+      if (rectangles <= 50) {
+        fill(255);
+        text((int)values[n], (n*recWidth), height - values[n] + 20);
+      }
     }
   }
 }
@@ -97,12 +119,16 @@ void drawComparisonRectangles(int j, int smallest) {
   textSize(recWidth / 3);
   fill(0, 0, 255);
   rect(j*recWidth, height, recWidth, -values[j]);
-  fill(255);
-  text((int)values[j], (j*recWidth), height - values[j] + 20);
+  if (rectangles <= 50) {
+    fill(255);
+    text((int)values[j], (j*recWidth), height - values[j] + 20);
+  }
   fill(255, 255, 0);
   rect(smallest*recWidth, height, recWidth, -values[smallest]);
-  fill(0);
-  text((int)values[smallest], (smallest*recWidth), height - values[smallest] + 20);
+  if (rectangles <= 50) {
+    fill(0);
+    text((int)values[smallest], (smallest*recWidth), height - values[smallest] + 20);
+  }
 }
 
 //Swapping two items in an array
@@ -111,4 +137,46 @@ void swap(int i1, int i2) {
   float temp = values[i1];
   values[i1] = values[i2];
   values[i2] = temp;
+}
+
+//User input from # of items to sort
+int getNumOfRectangles() {
+  String strNum = "";
+  int num = 50;
+
+  do {
+    strNum = JOptionPane.showInputDialog(null, "Enter the number of items to sort (between 10 and 100)", "Enter a value", JOptionPane.INFORMATION_MESSAGE);
+    if (strNum != null) {
+      num = Integer.parseInt(strNum);
+    }
+  } while (num < 10 || num > 100);
+  return num;
+}
+
+void keyPressed() {
+  if (key == 'r') {
+    //restart sketch
+    setup();
+    loop();
+  } else if (key == 't' && teacherMode) {
+    loop();
+  } else if (key == 's') {
+    if (looping) {
+      noLoop();
+      looping = false;
+    } else {
+      loop();
+      looping = true;
+    }
+  }
+}
+
+//User input for teacher mode
+boolean isTeacherMode() {
+  if (JOptionPane.showConfirmDialog(null, "Enable Teacher Mode?", "Teacher Mode?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+    noLoop();
+    return true;
+  } else {
+    return false;
+  }
 }
