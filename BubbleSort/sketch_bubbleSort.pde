@@ -1,29 +1,43 @@
 /** //<>//
-Bubble Sort Visualization
-By Nathan Breunig
-Last Updated: 1/15/19
-**/
+ Bubble Sort Visualization
+ By Nathan Breunig
+ Last Updated: 1/23/19
+ **/
 import processing.sound.*;
+import javax.swing.*;
 
 SoundFile sound;
 float[] values; //Array to sort
-int i = 0; int j = 0; //Varibales for the loops within the draw method
-int recWidth; int rectangles;
-int swaps = 0; int sorted, unsorted; //Variables for stats on the sort
+int i; 
+int j; //Varibales for the loops within the draw method
+int recWidth; 
+int rectangles;
+int swaps; 
+int sorted, unsorted; //Variables for stats on the sort
 SimpleTimer timer = new SimpleTimer(); //Timer class for timing sort
+boolean teacherMode, looping;
 
 void setup() {
   size(1400, 800);
   frameRate(60);
+  //reset variables
+  i = 0; 
+  j = 0; 
+  swaps = 0;
   sound = new SoundFile(this, "ding.wav");
-  rectangles = 40; //Number of items to sort
+
+  //user input
+  rectangles = getNumOfRectangles(); //Number of items to sort
+  teacherMode = isTeacherMode();
+
   recWidth = width / rectangles; //Width of each rectangle to draw
   values = new float[rectangles];
-  
+
   //Fill array with random values
   for (int i = 0; i < values.length; i++) {
     values[i] = random(height);
   }
+  looping = true;
   timer.start();
 }
 
@@ -33,18 +47,18 @@ void draw() {
   stroke(150);
   strokeWeight(2);
   fill(255);
-  
+
   //Draw the visualization of the array at its current state
   disp();
-  
+
   //Update sorted and unsorted values
   sorted = i;
   unsorted = values.length - i;
-  
+
   //Draw text/stats
   fill(255);
   textSize(20);
-  text("Bubble Sort Visualization by Nathan Breunig. 1/15/19. ", 10, 25);
+  text("Bubble Sort Visualization by Nathan Breunig. 1/23/19. ", 10, 25);
   text("Array Size: " + width/recWidth + ", Sorted: " + sorted + ", Unsorted: " + unsorted, 10, 50);
   text("Swaps: " + swaps, 10, 75);
   text("Time Elapsed: " + timer.getElapsedSec() + " sec", 10, 100);
@@ -71,7 +85,11 @@ void draw() {
     noLoop();
     fill(0, 128, 0); //Make rectangles green
     stroke(255);
-    disp();  
+    disp();
+  }
+
+  if (teacherMode) {
+    noLoop();
   }
 }
 
@@ -107,4 +125,46 @@ void drawJRect(int j) {
   rect((j+1)*recWidth, height, recWidth, -values[j+1]);
   fill(255);
   text((int)values[j+1], (j+1)*recWidth, height -values[j+1] + 35);
+}
+
+//User input from # of items to sort
+int getNumOfRectangles() {
+  String strNum = "";
+  int num = 50;
+
+  do {
+    strNum = JOptionPane.showInputDialog(null, "Enter the number of items to sort (between 10 and 100)", "Enter a value", JOptionPane.INFORMATION_MESSAGE);
+    if (strNum != null) {
+      num = Integer.parseInt(strNum);
+    }
+  } while (num < 10 || num > 100);
+  return num;
+}
+
+void keyPressed() {
+  if (key == 'r') {
+    //restart sketch
+    setup();
+    loop();
+  } else if (key == 't' && teacherMode) {
+    loop();
+  } else if (key == 's') {
+    if (looping) {
+      noLoop();
+      looping = false;
+    } else {
+      loop();
+      looping = true;
+    }
+  }
+}
+
+//User input for teacher mode
+boolean isTeacherMode() {
+  if (JOptionPane.showConfirmDialog(null, "Enable Teacher Mode?", "Teacher Mode?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+    noLoop();
+    return true;
+  } else {
+    return false;
+  }
 }
