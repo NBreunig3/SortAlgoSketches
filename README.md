@@ -27,10 +27,10 @@ Download the zip file below to be able to customize the animation to your liking
 | r      | Restarts the sketch|
 | s      | Play/Pause animation|
 | t      | Use this key to "step" through each iteration of the algorithm when "Teacher Mode" is enabled|
-#### Download for all platforms
-**32-bit:** Coming soon...
+#### Download for Windows
+**32-bit:** [](http://bit.ly/2HqZ72j)
 
-**64-bit:** Coming soon...
+**64-bit:** [](http://bit.ly/2RZFNgZ)
 #
 ## Selection Sort
 ### Description:
@@ -58,7 +58,7 @@ Download the zip file below to be able to customize the animation to your liking
 | r      | Restarts the sketch|
 | s      | Play/Pause animation|
 | t      | Use this key to "step" through each iteration of the algorithm when "Teacher Mode" is enabled|
-#### Download for all platforms
-**32-bit:** Coming soon...
+#### Download for Windows
+**32-bit:** [](http://bit.ly/2UcriDE)
 
-**64-bit:** Coming soon...
+**64-bit:** [](http://bit.ly/2sLBMy8)
