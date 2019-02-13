@@ -28,9 +28,7 @@ Download the zip file below to be able to customize the animation to your liking
 | s      | Play/Pause animation|
 | t      | Use this key to "step" through each iteration of the algorithm when "Teacher Mode" is enabled|
 #### Download for Windows
-**32-bit:** [BubbleSort_32-bit](http://bit.ly/2HqZ72j)
-
-**64-bit:** [BubbleSort_64-bit](http://bit.ly/2RZFNgZ)
+[Bubble Sort Download](http://bit.ly/2RZFNgZ)
 #
 ## Selection Sort
 ### Description:
@@ -59,6 +57,4 @@ Download the zip file below to be able to customize the animation to your liking
 | s      | Play/Pause animation|
 | t      | Use this key to "step" through each iteration of the algorithm when "Teacher Mode" is enabled|
 #### Download for Windows
-**32-bit:** [SelectionSort_32-bit](http://bit.ly/2UcriDE)
-
-**64-bit:** [SelectionSort_64-bit](http://bit.ly/2sLBMy8)
+[Selection Sort Download](http://bit.ly/2sLBMy8)
