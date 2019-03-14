@@ -25,10 +25,10 @@ void setup() {
   j = 0; 
   swaps = 0;
   sound = new SoundFile(this, "ding.wav");
+  teacherMode = false;
 
   //user input
   rectangles = getNumOfRectangles(); //Number of items to sort
-  teacherMode = isTeacherMode();
 
   recWidth = width / rectangles; //Width of each rectangle to draw
   values = new float[rectangles];
@@ -102,14 +102,18 @@ void disp() {
       fill(255);
       rect(n*recWidth, height, recWidth, -values[n]);
       fill(0);
-      text((int)values[n], n*recWidth, height - values[n] + 35);
+      if (rectangles <= 50) {
+        text((int)values[n], n*recWidth, height - values[n] + 35);
+      }
     } 
     //Draw green rectangle is sorted since in correct position
     else {
       fill(0, 128, 0);
       rect(n*recWidth, height, recWidth, -values[n]);
       fill(255);
-      text((int)values[n], n*recWidth, height -values[n] + 35);
+      if (rectangles <= 50) {
+        text((int)values[n], n*recWidth, height -values[n] + 35);
+      }
     }
   }
 }
@@ -146,9 +150,14 @@ void keyPressed() {
     //restart sketch
     setup();
     loop();
-  } else if (key == 't' && teacherMode) {
-    loop();
-  } else if (key == 's') {
+  } else if (key == 't') {
+    if (teacherMode) {
+      loop();
+    } else {
+      noLoop();
+      teacherMode = true;
+    }
+  } else if (key == 'p') {
     if (looping) {
       noLoop();
       looping = false;
@@ -156,15 +165,5 @@ void keyPressed() {
       loop();
       looping = true;
     }
-  }
-}
-
-//User input for teacher mode
-boolean isTeacherMode() {
-  if (JOptionPane.showConfirmDialog(null, "Enable Teacher Mode?", "Teacher Mode?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-    noLoop();
-    return true;
-  } else {
-    return false;
   }
 }
