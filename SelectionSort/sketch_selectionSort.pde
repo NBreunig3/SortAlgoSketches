@@ -28,9 +28,9 @@ void setup() {
   j = 0;
   smallestIndex = 0;
   sound = new SoundFile(this, "ding.wav");
+  teacherMode = false;
   //User Input
   rectangles= getNumOfRectangles();
-  teacherMode = isTeacherMode();
   recWidth = width / rectangles; //width of each rectangle
   values = new float[rectangles];
 
@@ -158,9 +158,14 @@ void keyPressed() {
     //restart sketch
     setup();
     loop();
-  } else if (key == 't' && teacherMode) {
-    loop();
-  } else if (key == 's') {
+  } else if (key == 't') {
+    if(teacherMode){
+      loop();
+    }else{
+      noLoop();
+      teacherMode = true;
+    }
+  } else if (key == 'p') {
     if (looping) {
       noLoop();
       looping = false;
@@ -168,15 +173,5 @@ void keyPressed() {
       loop();
       looping = true;
     }
-  }
-}
-
-//User input for teacher mode
-boolean isTeacherMode() {
-  if (JOptionPane.showConfirmDialog(null, "Enable Teacher Mode?", "Teacher Mode?", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-    noLoop();
-    return true;
-  } else {
-    return false;
   }
 }
