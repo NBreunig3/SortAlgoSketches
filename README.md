@@ -58,16 +58,21 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Insertion_sort): Insertion sort i
 #### Sort with 40 items:
 ![](https://i.imgur.com/SJDj0px.gif)
 #
+## Cocktail Shaker Sort
+### Description:
+From [Wikipedia](https://en.wikipedia.org/wiki/Cocktail_shaker_sort): Cocktail shaker sort, also known as bidirectional bubble sort, cocktail sort, shaker sort (which can also refer to a variant of selection sort), ripple sort, shuffle sort, or shuttle sort, is a variation of bubble sort that is both a stable sorting algorithm and a comparison sort. The algorithm differs from a bubble sort in that it sorts in both directions on each pass through the list.
+### O(n) Performance:
+| Best Case | Average Case | Worst Case |
+|:---------:|:------------:|:----------:|
+| O(n)      | O(n^2)       | O(n^2)     |
+### My Cocktail Shaker Sort Processing Animation: 
+|Color |Meaning|
+|:----:|:--------------------------------------:|
+|White |Unsorted                                |
+|Green |Sorted                                  |
+|Yellow & Blue|Values being compared and swapped if needed |
+#### Slow motion sort with 10 items:
+![](https://i.imgur.com/lGfpnCC.gif)
+#### Sort with 40 items:
+![](https://i.imgur.com/aznuFsN.gif)
 #
-## Download Interactive Animations
-Download the zip file below to be able to customize the animation to your liking. You get to set the number of items to sort as well as play/pause the animation. Enable "Teacher Mode" in order to "step through" the algorithm step by step.  
-#### Controls
-| Key       | Average Case |
-|:---------:|:------------:|
-| r      | Restarts the sketch|
-| p      | Play/Pause animation|
-| t      | Use this key to "step" through each iteration of the algorithm one frame at a time|
-#### Downloads for Windows:
-[Bubble Sort Download](http://bit.ly/2HiPwtL) <br />
-[Selection Sort Download](http://bit.ly/2T7BEno) <br />
-[Insertion Sort Download](http://bit.ly/2O73Ju9) <br />
