@@ -15,7 +15,6 @@ int rectangles;
 int swaps; 
 int sorted, unsorted; //Variables for stats on the sort
 SimpleTimer timer = new SimpleTimer(); //Timer class for timing sort
-boolean teacherMode, looping;
 
 void setup() {
   size(1400, 800);
@@ -25,7 +24,6 @@ void setup() {
   j = 0; 
   swaps = 0;
   sound = new SoundFile(this, "ding.wav");
-  teacherMode = false;
 
   //user input
   rectangles = getNumOfRectangles(); //Number of items to sort
@@ -87,10 +85,6 @@ void draw() {
     stroke(255);
     disp();
   }
-
-  if (teacherMode) {
-    noLoop();
-  }
 }
 
 //Draws the rectangles to display the values within the array
@@ -143,27 +137,4 @@ int getNumOfRectangles() {
     }
   } while (num < 10 || num > 100);
   return num;
-}
-
-void keyPressed() {
-  if (key == 'r') {
-    //restart sketch
-    setup();
-    loop();
-  } else if (key == 't') {
-    if (teacherMode) {
-      loop();
-    } else {
-      noLoop();
-      teacherMode = true;
-    }
-  } else if (key == 'p') {
-    if (looping) {
-      noLoop();
-      looping = false;
-    } else {
-      loop();
-      looping = true;
-    }
-  }
 }
