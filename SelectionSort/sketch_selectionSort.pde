@@ -8,7 +8,6 @@ import javax.swing.*;
 
 SoundFile sound;
 float[] values; //Array to sort
-boolean looping, teacherMode;
 int i; 
 int j; //For for loop logic inside draw loop
 int recWidth; 
@@ -85,10 +84,6 @@ void draw() {
     stroke(255);
     disp();
   }
-
-  if (teacherMode) {
-    noLoop();
-  }
 }
 
 //Draws the rectangles to display the values within the array
@@ -151,27 +146,4 @@ int getNumOfRectangles() {
     }
   } while (num < 10 || num > 100);
   return num;
-}
-
-void keyPressed() {
-  if (key == 'r') {
-    //restart sketch
-    setup();
-    loop();
-  } else if (key == 't') {
-    if(teacherMode){
-      loop();
-    }else{
-      noLoop();
-      teacherMode = true;
-    }
-  } else if (key == 'p') {
-    if (looping) {
-      noLoop();
-      looping = false;
-    } else {
-      loop();
-      looping = true;
-    }
-  }
 }
