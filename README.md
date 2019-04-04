@@ -1,5 +1,5 @@
 # Sorting Algorithms Visulized
-Various animations of different sorting algorithms using [Processing](processing.org) by Nathan Breunig.
+Various animations of different sorting algorithms using [Processing](https://www.processing.org) by Nathan Breunig.
 #
 ## Bubble Sort
 ### Description:
